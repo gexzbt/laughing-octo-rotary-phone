@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Credo Gay</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    h1 {
+      color: #f00d06;
+    }
+    p {
+      color: #110d0d;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: rgb(142, 7, 196);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    .image {
+      display: block;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>1º Dia dos Namorados</h1>
+  <p>Insira a senha para continuar:</p>
+  <p>Dica: Eu posso esquecer tudo, mas isso eu não esqueço</p>
+  <input type="password" id="password-input">
+  <button class="button" onclick="checkPassword()">Acessar</button>
+  <img class="image" src="https://i.postimg.cc/xC61bMhS/Whats-App-Image-2023-05-27-at-23-19-15.jpg">
+
+  <script>
+    var attempts = 0;
+
+    function checkPassword() {
+      var password = document.getElementById("password-input").value;
+      if (password === "cabelo queimado") {
+        // Senha correta, redireciona para a página desejada
+        window.location.href = "carta.html";
+      } else {
+        attempts++;
+        if (attempts === 3) {
+            showHintPopup(" Você sempre fica bravinha quando eu lembro, e eu me acabo de rir.");
+        } else if (attempts === 5) {
+          showHintPopup(" OK! ULTIMA! Noite de passagem.");
+        } else {
+          alert("Senha incorreta. Tente novamente.");
+        }
+      }
+    }
+
+    function showHintPopup(hint) {
+      alert("Difícil gatinha? que tal uma dica: " + hint);
+    }
+  </script>
+</body>
+</html>
