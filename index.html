@@ -42,16 +42,16 @@
   <h1>1º Dia dos Namorados</h1>
   <p>Insira a senha para continuar:</p>
   <p>Dica: Eu posso esquecer tudo, mas isso eu não esqueço</p>
-  <input type="password" id="password-input" onkeydown="handleEnter(event)">
-  <button class="button" onclick="checkPassword()">Acessar</button>
+  <input type="text" id="text-input" onkeydown="handleEnter(event)">
+  <button class="button" onclick="checktex()">Acessar</button>
   <img class="image" src="https://i.postimg.cc/xC61bMhS/Whats-App-Image-2023-05-27-at-23-19-15.jpg">
 
   <script>
     var attempts = 0;
 
-    function checkPassword() {
-      var password = document.getElementById("password-input").value;
-      if (password === "cachinhos queimados") {
+    function checktex() {
+      var text= document.getElementById("text-input").value;
+      if (text === "cachinhos queimados") {
         // Senha correta, redireciona para a página desejada
         window.location.href = "carta.html";
       } else {
@@ -73,8 +73,8 @@
     function handleEnter(event) {
       if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("password-input").blur(); // Remove o foco do campo de entrada
-        checkPassword(); // Chama a função do botão ao pressionar Enter
+        document.getElementById("text-input").blur(); // Remove o foco do campo de entrada
+        checktext(); // Chama a função do botão ao pressionar Enter
       }
     }
   </script>
