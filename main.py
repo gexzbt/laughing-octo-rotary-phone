@@ -43,21 +43,72 @@ l_logo.place(x=16, y=7)
 
 # funçoes...
 
-def play_musica():
-    tocando = listbox.get(ACTIVE)
-    l_display['text'] = tocando
-    pygame.mixer.music.load(tocando)
-    pygame.mixer.music.play()
+#tocar musica
 
+def play_musica():
+        tocando = listbox.get(ACTIVE)
+        l_display['text'] = tocando
+        pygame.mixer.music.load(tocando)
+        pygame.mixer.music.play()
+
+
+
+#pausar musica
 
 def pause_musica():
-    pygame.mixer.music.pause()
+        pygame.mixer.music.pause()
 
 
 
+
+#musica anterior
+
+def voltar_musica():
+    pygame.mixer.music.rewind
+    tocando = l_display['text']
+    index = musicas.index(tocando)
+
+    novo_index = index - 1
+    tocando = musicas[novo_index]
+
+    mixer.music.load(tocando)
+    mixer.music.play()
+
+    listbox.delete(0,END)
+    mostrar()
+    listbox.select_set(novo_index)
+    listbox.config(selectmode=SINGLE)
+    l_display['text'] = tocando
+
+#proxima musica
+
+def prox_musica():
+    tocando = l_display['text']
+    index = musicas.index(tocando)
+
+    novo_index = index + 1
+    tocando = musicas[novo_index]
+
+    mixer.music.load(tocando)
+    mixer.music.play()
+
+    listbox.delete(0,END)
+    mostrar()
+    listbox.select_set(novo_index)
+    listbox.config(selectmode=SINGLE)
+    l_display['text'] = tocando
+
+
+
+
+def cont_musica():
+        mixer.music.unpause()
+
+
+def canc_musica():
+    mixer.music.stop()
 
 #direito...
-
 
 
 listbox = Listbox(frame_direita, width=22, height=10, selectmode=SINGLE, font=('arial 9 bold'), bg=co3, fg=co1)
@@ -80,7 +131,7 @@ img_2 = Image.open('voltar2.png')
 img_2 = img_2.resize((30,30))
 img_2 = ImageTk.PhotoImage(img_2)
 
-l_rewind = Button(frame_baixo, image= img_2, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
+l_rewind = Button(frame_baixo, command=voltar_musica, image= img_2, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
 l_rewind.place(x=40, y=35)
 
 img_3 = Image.open('play4.png')
@@ -101,34 +152,34 @@ img_5 = Image.open('avanco5.png')
 img_5 = img_5.resize((30,30))
 img_5 = ImageTk.PhotoImage(img_5)
 
-l_fast = Button(frame_baixo, image= img_5, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
+l_fast = Button(frame_baixo, command=prox_musica, image= img_5, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
 l_fast.place(x=175, y=35)
 
 img_6 = Image.open('frente6.png')
 img_6 = img_6.resize((30,30))
 img_6 = ImageTk.PhotoImage(img_6)
 
-l_frente = Button(frame_baixo, image= img_6, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
+l_frente = Button(frame_baixo, command= cont_musica, image= img_6, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
 l_frente.place(x=218, y=35)
 
 img_7 = Image.open('total7.png')
 img_7 = img_7.resize((30,30))
-img_7 = ImageTk.PhotoImage(img_7) 
+img_7 = ImageTk.PhotoImage(img_7)
 
-l_stop = Button(frame_baixo, image= img_7, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
+l_stop = Button(frame_baixo, command=canc_musica, image= img_7, width=40, height=40, font=('ivy 10 bold'), relief=RAISED, overrelief=RIDGE, bg=co3, fg=co4)
 l_stop.place(x=263, y=35)
 
-os.chdir(r'C:\Users\User\OneDrive\Área de Trabalho\audios')
+os.chdir (r'C:\Users\User\OneDrive\Documents\audios')
 musicas = os.listdir()
 
 
 def mostrar():
     for i in musicas:
-     listbox.insert(END,i)
+        listbox.insert(END,i)
 
 
 mostrar()
-#tocar
+
 mixer.init()
 
 
